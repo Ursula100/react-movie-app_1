@@ -50,7 +50,7 @@ export default function FilterMoviesCard(props) {
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
   };
-  
+
   return (
     <Card 
       sx={{
@@ -99,7 +99,7 @@ export default function FilterMoviesCard(props) {
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
           Filter the movies.
-          <br />
+          <br/>
         </Typography>
       </CardContent>
     </Card>
