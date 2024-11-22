@@ -15,6 +15,7 @@ import { getSimilarMovies } from '../../api/tmdb-api';
 import Spinner from '../spinner';
 import SimilarMovieCard from '../similarMovieCard';
 import MovieReviews from '../movieReviews';
+import { Grid2 } from '@mui/material';
 
 const root = {
   display: 'flex',
@@ -101,10 +102,12 @@ const MovieDetails = ({ movie }) => {
       <Typography variant="h5" component="h3" sx={{ marginTop: '20px' }}>
         Similar Movies
       </Typography>
-      <Carousel showThumbs={false} autoPlay infiniteLoop>
+      <Carousel showThumbs={false} autoPlay infiniteLoop centerMode centerSlidePercentage={33} showArrows stopOnHover>
         {similarMovies.map((m) => (
           <div key={m.id}>
-            <SimilarMovieCard movie={m} />
+            <Grid2 sx={{padding: "20px"}}>
+              <SimilarMovieCard movie={m} />
+            </Grid2>
           </div>
         ))}
       </Carousel>
