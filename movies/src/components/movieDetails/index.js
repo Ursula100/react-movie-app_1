@@ -11,15 +11,16 @@ import Drawer from '@mui/material/Drawer';
 import { useQuery } from 'react-query';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { getSimilarMovies } from '../../api/tmdb-api';
+import { getSimilarMovies, getMovieCredits } from '../../api/tmdb-api';
 import Spinner from '../spinner';
 import SimilarMovieCard from '../similarMovieCard';
 import MovieReviews from '../movieReviews';
-import { Grid2 } from '@mui/material';
+import Grid2 from '@mui/material/Grid';
+import CastCard from '../castCard';
 
 const root = {
   display: 'flex',
-  justifyContent: 'center',
+  justifyContent: 'start',
   flexWrap: 'wrap',
   listStyle: 'none',
   padding: 1.5,
@@ -31,20 +32,30 @@ const chip = { margin: 0.5 };
 const MovieDetails = ({ movie }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const { data, error, isLoading, isError } = useQuery(
+  const { data: similarMoviesData, error: similarMoviesError, isLoading: similarMoviesLoading, isError: similarMoviesIsError } = useQuery(
     ['similar_movies', { id: movie.id }],
     getSimilarMovies
   );
 
-  if (isLoading) {
+  const { data: creditsData, error: creditsError, isLoading: creditsLoading, isError: creditsIsError } = useQuery(
+    ['movie_credits', { id: movie.id }],
+    getMovieCredits
+  );
+
+  if (similarMoviesLoading || creditsLoading) {
     return <Spinner />;
   }
 
-  if (isError) {
-    return <h1>{error.message}</h1>;
+  if (similarMoviesIsError) {
+    return <h1>{similarMoviesError.message}</h1>;
   }
 
-  const similarMovies = data.results;
+  if (creditsIsError) {
+    return <h1>{creditsError.message}</h1>;
+  }
+
+  const similarMovies = similarMoviesData.results;
+  const { cast, crew } = creditsData;
 
   return (
     <>
@@ -82,6 +93,33 @@ const MovieDetails = ({ movie }) => {
           </li>
         ))}
       </Paper>
+      <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold' }}>
+        Crew
+      </Typography>
+      <Paper component="ul" sx={{ ...root }}>
+        {crew.slice(0, 10).map((member) => (
+          <li key={member.credit_id}>
+            <Chip label={`${member.name} - ${member.job}`} sx={{ ...chip }} />
+          </li>
+        ))}
+      </Paper>
+      <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold' }}>
+        Cast
+      </Typography>
+      <Carousel showThumbs={true} autoPlay infiniteLoop centerMode centerSlidePercentage={33} showArrows stopOnHover>
+        {cast.slice(0, 10).map((c) => (
+          <div key={c.id}>
+            <Grid2 sx={{ padding: "14px" }}>
+              <CastCard cast={c} />
+            </Grid2>
+          </div>
+        ))}
+        <div>
+          <Typography variant="h5" component="h5" sx={{ textAlign: 'center', padding: '20px'}}>
+            <a href="/">View</a>
+          </Typography>
+        </div>
+      </Carousel>
       <Fab
         color="secondary"
         variant="extended"
@@ -99,13 +137,13 @@ const MovieDetails = ({ movie }) => {
         <MovieReviews movie={movie} />
       </Drawer>
 
-      <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold'}} >
+      <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold' }}>
         Similar Movies
       </Typography>
       <Carousel showThumbs={false} autoPlay infiniteLoop centerMode centerSlidePercentage={33} showArrows stopOnHover>
         {similarMovies.map((m) => (
           <div key={m.id}>
-            <Grid2 sx={{padding: "14px"}}>
+            <Grid2 sx={{ padding: '14px' }}>
               <SimilarMovieCard movie={m} />
             </Grid2>
           </div>
