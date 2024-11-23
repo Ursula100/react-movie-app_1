@@ -22,7 +22,7 @@ export default function SimilarMovieCard({movie}) {
             }
         />
         <CardMedia
-            sx={{ height: 300 }}
+            sx={{ height: 500 }}
             image={
             movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`

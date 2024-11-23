@@ -1,24 +1,35 @@
 import React, { useContext  } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid2";
 import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router-dom";
+import { styled } from '@mui/system';
+
+const ImageWrapper = styled('div')({
+    height: 300,
+    '& img': {
+      width: '100%',
+      height: 'auto', // Maintains aspect ratio
+      maxHeight: '100%', // Ensures image does not exceed the container height
+    },
+  });
 
 export default function CastCard({cast}) {
     return (
         <Card>
-        <CardMedia
-            sx={{ height: 500 }}
-            image={
+        <ImageWrapper>
+        <img
+          src={
             cast.profile_path
-                ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
-                : img
-            }
+              ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}`
+              : img
+          }
+          alt={cast.name}
         />
+      </ImageWrapper>
         <CardContent>
             <Grid container>
             <Grid size={{xs: 12}}>

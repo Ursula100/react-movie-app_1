@@ -106,7 +106,7 @@ const MovieDetails = ({ movie }) => {
       <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold' }}>
         Cast
       </Typography>
-      <Carousel showThumbs={true} autoPlay infiniteLoop centerMode centerSlidePercentage={33} showArrows stopOnHover>
+      <Carousel showThumbs={true} autoPlay infiniteLoop centerMode centerSlidePercentage={20} showArrows stopOnHover >
         {cast.slice(0, 10).map((c) => (
           <div key={c.id}>
             <Grid2 sx={{ padding: "14px" }}>
@@ -116,7 +116,7 @@ const MovieDetails = ({ movie }) => {
         ))}
         <div>
           <Typography variant="h5" component="h5" sx={{ textAlign: 'center', padding: '20px'}}>
-            <a href="/">View</a>
+            <a href="/">View All</a>
           </Typography>
         </div>
       </Carousel>
