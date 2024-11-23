@@ -48,11 +48,11 @@ const MovieDetails = ({ movie }) => {
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" sx={{ marginTop: '14px', fontWeight: 'bold' }}>
         Overview
       </Typography>
 
-      <Typography variant="h6" component="p">
+      <Typography variant="h6" component="p" sx={{ marginBottom: '20px' }}>
         {movie.overview}
       </Typography>
 
@@ -67,10 +67,10 @@ const MovieDetails = ({ movie }) => {
         ))}
       </Paper>
       <Paper component="ul" sx={{ ...root }}>
-        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
-        <Chip icon={<MonetizationIcon />} label={`${movie.revenue.toLocaleString()}`} />
-        <Chip icon={<StarRate />} label={`${movie.vote_average} (${movie.vote_count})`} />
-        <Chip label={`Released: ${movie.release_date}`} />
+        <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} sx={{ ...chip }} />
+        <Chip icon={<MonetizationIcon />} label={`${movie.revenue.toLocaleString()}`} sx={{ ...chip }} />
+        <Chip icon={<StarRate />} label={`${movie.vote_average} (${movie.vote_count})`} sx={{ ...chip }} />
+        <Chip label={`Released: ${movie.release_date}`} sx={{ ...chip }} />
       </Paper>
       <Paper component="ul" sx={{ ...root }}>
         <li>
@@ -99,13 +99,13 @@ const MovieDetails = ({ movie }) => {
         <MovieReviews movie={movie} />
       </Drawer>
 
-      <Typography variant="h5" component="h3" sx={{ marginTop: '20px' }}>
+      <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold'}} >
         Similar Movies
       </Typography>
       <Carousel showThumbs={false} autoPlay infiniteLoop centerMode centerSlidePercentage={33} showArrows stopOnHover>
         {similarMovies.map((m) => (
           <div key={m.id}>
-            <Grid2 sx={{padding: "20px"}}>
+            <Grid2 sx={{padding: "14px"}}>
               <SimilarMovieCard movie={m} />
             </Grid2>
           </div>

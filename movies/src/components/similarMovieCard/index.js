@@ -17,7 +17,6 @@ export default function SimilarMovieCard({movie}) {
     return (
         <Card>
         <CardHeader
-            
             title={
             <Typography variant="h5" component="p">
                 {movie.title}{" "}
@@ -25,7 +24,7 @@ export default function SimilarMovieCard({movie}) {
             }
         />
         <CardMedia
-            sx={{ height: 250 }}
+            sx={{ height: 300 }}
             image={
             movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
