@@ -6,21 +6,38 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { getMovieImages } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+import { getSimilarMovies } from "../../api/tmdb-api";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Grid2 from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { Carousel } from "react-responsive-carousel";
+import SimilarMovieCard from "../similarMovieCard";
 
 const TemplateMoviePage = ({ movie, children }) => {
-  const { data , error, isLoading, isError } = useQuery(
+  const { data: ImagesData , error: ImagesError, isLoading: ImagesLoading, isError: ImagesIsError } = useQuery(
     ["images", { id: movie.id }],
     getMovieImages
   );
 
-  if (isLoading) {
+  const { data: similarMoviesData, error: similarMoviesError, isLoading: similarMoviesLoading, isError: similarMoviesIsError } = useQuery(
+    ['similar_movies', { id: movie.id }],
+    getSimilarMovies
+  );
+
+  if (ImagesLoading || similarMoviesLoading) {
     return <Spinner />;
   }
 
-  if (isError) {
+  if (ImagesIsError) {
     return <h1>{error.message}</h1>;
   }
-  const images = data.posters 
+
+  if (similarMoviesIsError) {
+    return <h1>{similarMoviesError.message}</h1>;
+  }
+
+  const images = ImagesData.posters 
+  const similarMovies = similarMoviesData.results;
 
   return (
     <>
@@ -54,6 +71,21 @@ const TemplateMoviePage = ({ movie, children }) => {
         <Grid size={{xs: 9}}>
           {children}
         </Grid>
+        <Grid size={{xs: 12}}>
+        <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold' }}>
+        Similar Movies
+        </Typography>
+        <Carousel showThumbs={false} autoPlay infiniteLoop centerMode centerSlidePercentage={20} showArrows stopOnHover>
+          {similarMovies.map((m) => (
+            <div key={m.id}>
+              <Grid2 sx={{ padding: '14px' }}>
+                <SimilarMovieCard movie={m} />
+              </Grid2>
+            </div>
+          ))}
+        </Carousel>
+        </Grid>
+
       </Grid>
     </>
   );

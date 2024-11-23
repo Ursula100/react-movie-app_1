@@ -11,12 +11,11 @@ import Drawer from '@mui/material/Drawer';
 import { useQuery } from 'react-query';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { getSimilarMovies, getMovieCredits } from '../../api/tmdb-api';
 import Spinner from '../spinner';
-import SimilarMovieCard from '../similarMovieCard';
 import MovieReviews from '../movieReviews';
 import Grid2 from '@mui/material/Grid';
 import CastCard from '../castCard';
+import { getMovieCredits } from '../../api/tmdb-api';
 
 const root = {
   display: 'flex',
@@ -32,29 +31,18 @@ const chip = { margin: 0.5 };
 const MovieDetails = ({ movie }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const { data: similarMoviesData, error: similarMoviesError, isLoading: similarMoviesLoading, isError: similarMoviesIsError } = useQuery(
-    ['similar_movies', { id: movie.id }],
-    getSimilarMovies
-  );
-
   const { data: creditsData, error: creditsError, isLoading: creditsLoading, isError: creditsIsError } = useQuery(
     ['movie_credits', { id: movie.id }],
     getMovieCredits
   );
 
-  if (similarMoviesLoading || creditsLoading) {
+  if (creditsLoading) {
     return <Spinner />;
-  }
-
-  if (similarMoviesIsError) {
-    return <h1>{similarMoviesError.message}</h1>;
   }
 
   if (creditsIsError) {
     return <h1>{creditsError.message}</h1>;
   }
-
-  const similarMovies = similarMoviesData.results;
   const { cast, crew } = creditsData;
 
   return (
@@ -136,19 +124,6 @@ const MovieDetails = ({ movie }) => {
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
-
-      <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold' }}>
-        Similar Movies
-      </Typography>
-      <Carousel showThumbs={false} autoPlay infiniteLoop centerMode centerSlidePercentage={33} showArrows stopOnHover>
-        {similarMovies.map((m) => (
-          <div key={m.id}>
-            <Grid2 sx={{ padding: '14px' }}>
-              <SimilarMovieCard movie={m} />
-            </Grid2>
-          </div>
-        ))}
-      </Carousel>
     </>
   );
 };

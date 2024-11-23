@@ -38,11 +38,11 @@ export default function CastCard({cast}) {
                 </Typography>
             </Grid>
             <Grid size={{xs: 12}}>
-                <Typography variant="h6" component="p">
+                <Typography variant="p" component="p">
                 {cast.character}
                 </Typography>
             </Grid>
-            <Grid size={{xs: 12}}>
+            <Grid size={{xs: 12}} marginTop={2}>
                 <Link to={`/`}>
                 <Button variant="outlined" size="medium" color="primary">
                     More Info ...
