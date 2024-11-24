@@ -20,21 +20,25 @@ const PersonDetails = ({ person, credits }) => {
           />
           <Box sx={{ marginTop: '10px' }}>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Known For</Typography>
-            <Typography variant="body1">{person.known_for_department}</Typography>
+            <Typography variant="body1">{person.known_for_department || "Not available"}</Typography>
           </Box>
           <Box sx={{ marginTop: '10px' }}>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Also Known As</Typography>
-            {person.also_known_as.map((alias, index) => (
-              <Chip key={index} label={alias} sx={{ margin: '2px' }} />
-            ))}
+            {person.also_known_as && person.also_known_as.length > 0 ? (
+              person.also_known_as.map((alias, index) => (
+                <Chip key={index} label={alias} sx={{ margin: '2px' }} />
+              ))
+            ) : (
+              <Typography variant="body1">Not available</Typography>
+            )}
           </Box>
           <Box sx={{ marginTop: '10px' }}>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Date of Birth</Typography>
-            <Typography variant="body1" >{person.birthday}</Typography>
+            <Typography variant="body1" >{person.birthday || "Not Available"}</Typography>
           </Box>
           <Box sx={{ marginTop: '10px' }}>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Place of Birth</Typography>
-            <Typography variant="body1">{person.place_of_birth}</Typography>
+            <Typography variant="body1">{person.place_of_birth || "Not Available"}</Typography>
           </Box>
         </Grid>
         
@@ -44,7 +48,7 @@ const PersonDetails = ({ person, credits }) => {
             {person.name}
           </Typography>
           <Typography variant="body1" gutterBottom> {/*gutterBottom to add bottom margin*/}
-            {person.biography}
+           {person.biography ? person.biography : "Biography is not available at the moment."}
           </Typography>
 
           <Box sx={{ marginTop: '20px' }}>
