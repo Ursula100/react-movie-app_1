@@ -4,7 +4,7 @@
 ###### [Watch Video Presentation](https://youtu.be/91h4hDNPDvk)
 
 ## Improvements
-#### App Extension (More Endpoints)
+### App Extension (More Endpoints)
 All Api fetch methods found in the `movies\src\api\tmdb-api.js file` <br>
 - Static Endpoints (2) 
   - **/upcoming** - To get list of upcoming movies. (done as exercise at end of lab) 
@@ -14,7 +14,7 @@ All Api fetch methods found in the `movies\src\api\tmdb-api.js file` <br>
   -  **/person/:id/movie_credits** - Get a persons list of movies they took part in
   -  **/movie/:id/similar** - Get list of moview similar to the one selected
   -  **/movie/:id/credits** - Get a list of the cast and crew for this movie
-#### Functionality
+### Functionality
 - Caching done on all added endpoints (static and parameterised) <br>
   
   ![image](https://github.com/user-attachments/assets/992433bf-01f9-4858-8089-db3797965db3)
@@ -24,11 +24,11 @@ All Api fetch methods found in the `movies\src\api\tmdb-api.js file` <br>
   - By ratings (vote_average): _descending order_
   - By release date: _descending order_
 
-#### Features
-Minor changes in color scheme
-##### New layout component: react-responsive-carousel
+### Features
+#### 1. Minor changes in color scheme
+#### 2. New layout component: react-responsive-carousel
   Used in similar movies and cast list in `Movie Detail Page`
-##### Responive UI Layout
+#### 3. Responive UI Layout
   - Made carousel' _centerSlidePercentage_ parameter depend on the screen size. For this I made use of _useMediaQuery and useTheme_ as shown <br>
 ```
   import { useMediaQuery, useTheme } from "@mui/material";`
@@ -56,7 +56,7 @@ Minor changes in color scheme
 
  ![image](https://github.com/user-attachments/assets/a32d82ee-b270-47be-9b9a-29749781395a)
 
-##### Pagination and Sticky Headers
+#### 4. Pagination and Sticky Headers
 Site and Page Headers made sticky (unscrollable) to facilitate navigation. <br> <br>
 __Added Pagination to all main pages displaying fetched movie list. For this:__ <br>
 - The concerned fetches were updated to take in a page number parameter.
@@ -88,7 +88,7 @@ __Added Pagination to all main pages displaying fetched movie list. For this:__ 
 
   ![image](https://github.com/user-attachments/assets/046e617f-158e-45a3-997b-5afa269a9cb8)
 
-  ##### Handle missing Information to keep good UD
+  #### 5. Handle missing Information to keep good UD
   Noticed some objects had some empty paramaters and handled some of them using conditionals. For example:
   ```
   <Typography variant="body1" gutterBottom> {/*gutterBottom to add bottom margin*/}
