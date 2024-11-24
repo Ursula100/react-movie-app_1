@@ -4,7 +4,7 @@ import { getMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
-import Pagination from '@mui/material/Pagination';
+import MoviePagination from "../components/MoviePagePagination";
 
 const HomePage = (props) => {
   const [currentPage, setCurrentPage] = useState(1); // Manage the current page state
@@ -39,23 +39,20 @@ const HomePage = (props) => {
   const addToFavorites = (movieId) => true;
 
   return (
-    <div>
+    <>
       <PageTemplate
         title="Discover Movies"
         movies={movies}
         action={(movie) => <AddToFavoritesIcon movie={movie} />}
       />
       
-      {/* Pagination component */}
-      <div style={{ textAlign: 'center', marginTop: '20px', display:'flex', justifyContent:'center' }}>
-        <Pagination
-          count={totalPages}
-          page={currentPage}
-          onChange={handlePageChange}
-          color="primary"
+      {/* Pagination reusable component */}
+      <MoviePagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
         />
-      </div>
-    </div>
+    </>
   );
 };
 
