@@ -20,6 +20,7 @@ const ImageWrapper = styled('div')({
 export default function CastCard({cast}) {
     return (
         <Card>
+            <Link to={`/person/${cast.id}`}>
         <ImageWrapper>
         <img
           src={
@@ -42,15 +43,9 @@ export default function CastCard({cast}) {
                 {cast.character}
                 </Typography>
             </Grid>
-            <Grid size={{xs: 12}} marginTop={2}>
-                <Link to={`/person/${cast.id}`}>
-                <Button variant="outlined" size="medium" color="primary">
-                    More Info ...
-                </Button>
-        </Link>
-            </Grid>
             </Grid>
         </CardContent>
+        </Link>
         </Card>
     );
 }

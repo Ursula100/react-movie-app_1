@@ -102,11 +102,11 @@ const MovieDetails = ({ movie }) => {
             </Grid2>
           </div>
         ))}
-        <div>
+        {/*<div>
           <Typography variant="h5" component="h5" sx={{ textAlign: 'center', padding: '20px'}}>
             <a href="/">View All</a>
           </Typography>
-        </div>
+        </div>*/}
       </Carousel>
       <Fab
         color="secondary"
