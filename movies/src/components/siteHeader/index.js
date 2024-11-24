@@ -42,10 +42,10 @@ const SiteHeader = ({ history }) => {
     <>
       <AppBar position="fixed" color="primary">
         <Toolbar>
-          <Typography variant="h4" sx={{ flexGrow: 1 }} component={Link} to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Typography variant={isMobile ? "h5" : "h4"} sx={{ flexGrow: 1 }} component={Link} to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             TMDB Client
           </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant={isMobile ? "p" : "h6"} sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, }}>
             All you ever wanted to know about Movies!
           </Typography>
             {isMobile ? (

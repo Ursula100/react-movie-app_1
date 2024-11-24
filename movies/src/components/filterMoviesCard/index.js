@@ -9,14 +9,10 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Box from "@mui/material/Box";
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner';
-import { Sort } from '@mui/icons-material';  // Sorting icon
-import { Button, colors } from "@mui/material";
-import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
-
+import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg';
 
 const formControl = {
   margin: 1,
@@ -25,6 +21,8 @@ const formControl = {
 };
 
 export default function FilterMoviesCard(props) {
+
+  // Use the `useQuery` hook outside of any condition to prevent changing order of hooks
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
   if (isLoading) {
@@ -58,59 +56,59 @@ export default function FilterMoviesCard(props) {
   };
 
   return (
-    <Card sx={{ backgroundColor: "#f5f5f5", borderRadius: 2 }} variant="outlined">
-      <CardContent>
-        <Typography variant="h5" component="h1" sx={{ marginBottom: 2 }}>
-          <SearchIcon fontSize="large" />
-          Filter & Sort Movies
-        </Typography>
+      <Card sx={{ backgroundColor: "#f5f5f5", borderRadius: 2 }} variant="outlined">
+        <CardContent>
+          <Typography variant="h5" component="h1" sx={{ marginBottom: 2 }}>
+            <SearchIcon fontSize="large" />
+            Filter & Sort Movies
+          </Typography>
 
-        {/* Search Field */}
-        <TextField
-          sx={{ ...formControl, marginBottom: 2 }}
-          id="filled-search"
-          label="Search by Title"
-          type="search"
-          variant="filled"
-          value={props.titleFilter}
-          onChange={handleTextChange}
-        />
+          {/* Search Field */}
+          <TextField
+            sx={{ ...formControl, marginBottom: 2 }}
+            id="filled-search"
+            label="Search by Title"
+            type="search"
+            variant="filled"
+            value={props.titleFilter}
+            onChange={handleTextChange}
+          />
 
-        {/* Genre Selection */}
-        <FormControl sx={{ ...formControl, marginBottom: 2 }}>
-          <InputLabel id="genre-label">Genre</InputLabel>
-          <Select
-            labelId="genre-label"
-            id="genre-select"
-            value={props.genreFilter}
-            onChange={handleGenreChange}
-          >
-            {genres.map((genre) => (
-              <MenuItem key={genre.id} value={genre.id}>
-                {genre.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          {/* Genre Selection */}
+          <FormControl sx={{ ...formControl, marginBottom: 2 }}>
+            <InputLabel id="genre-label">Genre</InputLabel>
+            <Select
+              labelId="genre-label"
+              id="genre-select"
+              value={props.genreFilter}
+              onChange={handleGenreChange}
+            >
+              {genres.map((genre) => (
+                <MenuItem key={genre.id} value={genre.id}>
+                  {genre.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
-        {/* Sorting */}
-        <FormControl sx={{ ...formControl, marginBottom: 2 }}>
-          <InputLabel id="sort-label" marginBottom="2">Sort By</InputLabel>
-          <Select
-            labelId="sort-label"
-            id="sort-select"
-            value={props.sortFilter}
-            onChange={handleSortChange}
-          >
-            <MenuItem value="title">Title</MenuItem>
-            <MenuItem value="release_date">Release Date</MenuItem>
-            <MenuItem value="rating">Rating</MenuItem>
-          </Select>
-        </FormControl>
-      </CardContent>
+          {/* Sorting */}
+          <FormControl sx={{ ...formControl, marginBottom: 2 }}>
+            <InputLabel id="sort-label">Sort By</InputLabel>
+            <Select
+              labelId="sort-label"
+              id="sort-select"
+              value={props.sortFilter}
+              onChange={handleSortChange}
+            >
+              <MenuItem value="title">Title</MenuItem>
+              <MenuItem value="release_date">Release Date</MenuItem>
+              <MenuItem value="rating">Rating</MenuItem>
+            </Select>
+          </FormControl>
+        </CardContent>
 
-      {/* Image */}
-      <CardMedia sx={{ height: 200 }} image={img} title="Filter" />
-    </Card>
+        {/* Image */}
+        <CardMedia sx={{ height: 200 }} image={img} title="Filter" />
+      </Card>
   );
 }

@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { useMediaQuery, useTheme } from "@mui/material";
 import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid2";
 
 function MovieListPageTemplate({ movies, title, action }) {
+
+  
+  // Use the MUI theme and breakpoints to determine screen size
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));  // Define mobile screen size
+
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [sortFilter, setSortFilter] = useState("title");
@@ -30,7 +37,11 @@ function MovieListPageTemplate({ movies, title, action }) {
 
   return (
     <Grid container>
-      <Grid size={12}>
+      <Grid size={12} sx={{
+          position: "sticky", 
+          top: "64px", // Offset from the top for sticky
+          zIndex: 1000,
+        }}>
         <Header title={title} />
       </Grid>
       <Grid container sx={{ flex: "1 1 500px" }}>
