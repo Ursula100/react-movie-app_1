@@ -1,5 +1,7 @@
 # react-movie-labs 4
-###### By Ursula Tamen <br> This an continuation of the movie react app (version 3) done duuring labs with some added improvements. <br> TMDB API used. All endpoints therefore prefixed with `https://api.themoviedb.org/3`<br>This document is specifically on improvements done to the app. It shall later be updated to detail all features.
+###### By Ursula Tamen
+###### This an continuation of the movie react app (version 3) previously built during labs with some added improvements. <br> TMDB API used. All endpoints therefore prefixed with `https://api.themoviedb.org/3`<br>This document is specifically on improvements done to the app. It shall later be updated to detail all features.
+###### [Watch Video Presentation](https://youtu.be/91h4hDNPDvk)
 
 ## Improvements
 #### App Extension (More Endpoints)
