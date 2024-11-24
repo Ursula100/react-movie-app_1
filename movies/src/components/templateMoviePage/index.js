@@ -29,7 +29,7 @@ const TemplateMoviePage = ({ movie, children }) => {
   }
 
   if (ImagesIsError) {
-    return <h1>{error.message}</h1>;
+    return <h1>{ImagesError.message}</h1>;
   }
 
   if (similarMoviesIsError) {

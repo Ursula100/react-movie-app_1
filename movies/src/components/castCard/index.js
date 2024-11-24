@@ -43,7 +43,7 @@ export default function CastCard({cast}) {
                 </Typography>
             </Grid>
             <Grid size={{xs: 12}} marginTop={2}>
-                <Link to={`/`}>
+                <Link to={`/person/${cast.id}`}>
                 <Button variant="outlined" size="medium" color="primary">
                     More Info ...
                 </Button>
