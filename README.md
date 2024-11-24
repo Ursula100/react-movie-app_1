@@ -36,12 +36,15 @@ Minor changes in color scheme
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));  // Define mobile screen size
 
   centerSlidePercentage={isMobile ? 50: 20}
+
 ```
- We can 5 slides at once on larger screen
+ **We can see 5 slides at once on larger screen**
+ 
  
  ![image](https://github.com/user-attachments/assets/ef971ae2-cba3-4b73-9f6c-68ef94135587)
+ 
 
- Opposed to 2 slides on Mobile
+ **Opposed to 2 slides on Mobile**
 
  ![image](https://github.com/user-attachments/assets/5b04dfd1-63ad-4d21-8c85-0c21822094c8)
 
