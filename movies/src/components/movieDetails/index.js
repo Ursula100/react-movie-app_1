@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useMediaQuery, useTheme } from "@mui/material";
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -29,6 +30,11 @@ const root = {
 const chip = { margin: 0.5 };
 
 const MovieDetails = ({ movie }) => {
+
+  // Use the MUI theme and breakpoints to determine screen size
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));  // Define mobile screen size
+
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { data: creditsData, error: creditsError, isLoading: creditsLoading, isError: creditsIsError } = useQuery(
@@ -94,7 +100,7 @@ const MovieDetails = ({ movie }) => {
       <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold' }}>
         Cast
       </Typography>
-      <Carousel showThumbs={true} autoPlay infiniteLoop centerMode centerSlidePercentage={20} showArrows stopOnHover >
+      <Carousel showThumbs={true} autoPlay infiniteLoop centerMode centerSlidePercentage={isMobile ? 33: 20} showArrows stopOnHover >
         {cast.slice(0, 10).map((c) => (
           <div key={c.id}>
             <Grid2 sx={{ padding: "14px" }}>

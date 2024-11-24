@@ -1,4 +1,5 @@
 import React from "react";
+import { useMediaQuery, useTheme } from "@mui/material";
 import MovieHeader from "../headerMovie";
 import Grid from "@mui/material/Grid2";
 import ImageList from "@mui/material/ImageList";
@@ -14,6 +15,11 @@ import { Carousel } from "react-responsive-carousel";
 import SimilarMovieCard from "../similarMovieCard";
 
 const TemplateMoviePage = ({ movie, children }) => {
+
+  // Use the MUI theme and breakpoints to determine screen size
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));  // Define mobile screen size
+  
   const { data: ImagesData , error: ImagesError, isLoading: ImagesLoading, isError: ImagesIsError } = useQuery(
     ["images", { id: movie.id }],
     getMovieImages
@@ -75,7 +81,7 @@ const TemplateMoviePage = ({ movie, children }) => {
         <Typography variant="h5" component="h3" sx={{ marginTop: '20px', fontWeight: 'bold' }}>
         Similar Movies
         </Typography>
-        <Carousel showThumbs={false} autoPlay infiniteLoop centerMode centerSlidePercentage={20} showArrows stopOnHover>
+        <Carousel showThumbs={false} autoPlay infiniteLoop centerMode centerSlidePercentage={isMobile ? 50: 20} showArrows stopOnHover>
           {similarMovies.map((m) => (
             <div key={m.id}>
               <Grid2 sx={{ padding: '14px' }}>

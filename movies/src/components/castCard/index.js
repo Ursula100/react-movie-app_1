@@ -19,7 +19,7 @@ const ImageWrapper = styled('div')({
 export default function CastCard({cast}) {
     return (
         <Card>
-            <Link to={`/person/${cast.id}`}>
+            <Link to={`/person/${cast.id}`} style={{color: 'inherit' }}>
         <ImageWrapper>
         <img
           src={

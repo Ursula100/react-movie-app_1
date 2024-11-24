@@ -1,16 +1,10 @@
 import React, { useState } from "react";
-import { useMediaQuery, useTheme } from "@mui/material";
 import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid2";
 
 function MovieListPageTemplate({ movies, title, action }) {
-
-  
-  // Use the MUI theme and breakpoints to determine screen size
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));  // Define mobile screen size
 
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");

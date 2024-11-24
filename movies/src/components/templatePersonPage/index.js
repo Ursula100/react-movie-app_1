@@ -59,7 +59,7 @@ const PersonDetails = ({ person, credits }) => {
             <Box sx={{ display: 'flex', overflowX: 'auto' }}>
               {credits.cast.map((movie) => (
                 <Card key={movie.id} sx={{ minWidth: 150, marginRight: '10px' }}>
-                  <Link to={`/movies/${movie.id}`}>
+                  <Link to={`/movies/${movie.id}`} style={{color: 'inherit' }}>
                     <CardMedia
                       component="img"
                       image={movie.poster_path
