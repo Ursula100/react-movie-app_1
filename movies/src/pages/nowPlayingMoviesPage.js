@@ -3,8 +3,8 @@ import { getNowPlayingMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
-import AddToWatchlistIcon from '../components/cardIcons/addToWatchlist'
 import MoviePagination from "../components/MoviePagePagination";
+import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 const NowPlayingMoviesPage = (props) => {
   const [currentPage, setCurrentPage] = useState(1); // Manage the current page state
@@ -36,9 +36,7 @@ const NowPlayingMoviesPage = (props) => {
     <PageTemplate
       title='Movies Playing Now'
       movies={movies}
-      action={(movie) => {
-        return <AddToWatchlistIcon movie={movie} />
-      }}
+      action={(movie) => <AddToFavoritesIcon movie={movie} />}
     />
     <MoviePagination
         totalPages={totalPages}

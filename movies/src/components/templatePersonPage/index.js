@@ -6,7 +6,8 @@ import Grid from "@mui/material/Grid";
 import Chip from "@mui/material/Chip";
 import Box from "@mui/material/Box";
 import { Card, CardMedia, CardContent } from "@mui/material";
-import img from '../../images/film-poster-placeholder.png'
+import img from '../../images/person-profile-placeholder.png'
+
 
 const PersonDetails = ({ person, credits }) => {
   return (
@@ -14,7 +15,9 @@ const PersonDetails = ({ person, credits }) => {
       <Grid container spacing={2}>
         <Grid item xs={12} md={4}>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+            src={person.profile_path
+              ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
+              : img}
             alt={person.name}
             style={{ width: '100%', borderRadius: '8px', objectFit: 'contain' }}
           />

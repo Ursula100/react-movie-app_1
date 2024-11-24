@@ -1,10 +1,9 @@
-import React, { useContext  } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid2";
-import img from '../../images/film-poster-placeholder.png'
+import img from '../../images/person-profile-placeholder.png'
 import { Link } from "react-router-dom";
 import { styled } from '@mui/system';
 

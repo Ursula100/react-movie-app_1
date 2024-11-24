@@ -109,7 +109,7 @@ const MovieDetails = ({ movie }) => {
         </div>*/}
       </Carousel>
       <Fab
-        color="secondary"
+        color="primary"
         variant="extended"
         onClick={() => setDrawerOpen(true)}
         sx={{
