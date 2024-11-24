@@ -106,9 +106,6 @@ export default function FilterMoviesCard(props) {
             </Select>
           </FormControl>
         </CardContent>
-
-        {/* Image */}
-        <CardMedia sx={{ height: 200 }} image={img} title="Filter" />
       </Card>
   );
 }
