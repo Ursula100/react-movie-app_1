@@ -46,7 +46,7 @@ All Api fetch methods found in the `movies\src\api\tmdb-api.js file` <br>
  ![image](https://github.com/user-attachments/assets/ef971ae2-cba3-4b73-9f6c-68ef94135587)
  
 
- **Opposed to 2 slides on Mobile**
+ **Opposed to 3 slides on Mobile**
 
  ![image](https://github.com/user-attachments/assets/5b04dfd1-63ad-4d21-8c85-0c21822094c8)
 
