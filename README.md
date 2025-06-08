@@ -1,6 +1,6 @@
-# 🎥 React Movie App (Version 4) - Extended API Integration
+# react-movie-web-app
 ###### By Ursula Tamen
-###### Welcome to Version 4 of my React Movie App! This project builds on the foundational features developed in earlier lab versions and extends the app with advanced functionality, refined user interface design, and seamless integration with both the **TMDB API** and custom-built API endpoints.
+###### This an continuation of the movie react app previously built during labs with some added improvements. <br> TMDB API used. All endpoints therefore prefixed with `https://api.themoviedb.org/3`<br>This document is specifically on improvements done to the app. It shall later be updated to detail all features.
 
 ---
 ###### [Watch Video Presentation](https://youtu.be/91h4hDNPDvk)
