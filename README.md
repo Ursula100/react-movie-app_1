@@ -1,62 +1,84 @@
-# react-movie-labs 4
+# 🎥 React Movie App (Version 4) - Extended API Integration
 ###### By Ursula Tamen
-###### This an continuation of the movie react app (version 3) previously built during labs with some added improvements. <br> TMDB API used. All endpoints therefore prefixed with `https://api.themoviedb.org/3`<br>This document is specifically on improvements done to the app. It shall later be updated to detail all features.
+###### Welcome to Version 4 of my React Movie App! This project builds on the foundational features developed in earlier lab versions and extends the app with advanced functionality, refined user interface design, and seamless integration with both the **TMDB API** and custom-built API endpoints.
+
+---
 ###### [Watch Video Presentation](https://youtu.be/91h4hDNPDvk)
 
-## Improvements
-### App Extension (More Endpoints)
-All Api fetch methods found in the `movies\src\api\tmdb-api.js file` <br>
-- Static Endpoints (2) 
-  - **/upcoming** - To get list of upcoming movies. (done as exercise at end of lab) 
-  - **/now_playing** - List of movies playing now!
-- Parameterised endpoints
-  -  **/person/:id** - Get persons info/about
-  -  **/person/:id/movie_credits** - Get a persons list of movies they took part in
-  -  **/movie/:id/similar** - Get list of moview similar to the one selected
-  -  **/movie/:id/credits** - Get a list of the cast and crew for this movie
-### Functionality
-- Caching done on all added endpoints (static and parameterised) <br>
+---
+
+## ✨ Key Highlights
+- **Full integration with TMDB API** using both static and dynamic endpoints
+- **Enhanced user experience** through improved UI, responsive design, and conditional rendering
+- **Pagination and filtering** for improved content navigation
+- **Custom layout components** using `react-responsive-carousel` and Material UI
+- **Efficient caching** on all fetch requests
+
+## 💲 Features Overview
+
+### 🌀 Extended API Usage
+All fetch methods are handled via `movies/src/api/tmdb-api.js`
+
+#### TMDB API Endpoints
+| Endpoint | Type | Description |
+|----------|------|-------------|
+| `/upcoming` | Static | Upcoming movies |
+| `/now_playing` | Static | Movies currently in theaters |
+| `/person/:id` | Parameterized | Individual actor/crew details |
+| `/person/:id/movie_credits` | Parameterized | Person’s movie credits |
+| `/movie/:id/similar` | Parameterized | Similar movie suggestions |
+| `/movie/:id/credits` | Parameterized | Full cast & crew for a movie |
+
+> ✅ **Caching implemented** for both static and parameterized endpoints to enhance performance.
   
   ![image](https://github.com/user-attachments/assets/992433bf-01f9-4858-8089-db3797965db3)
 
-- Sorting option added to `filterCard` component used in `templateMovieListPage` and displayed on all main pages:
-  - By title: _alphabetically_
-  - By ratings (vote_average): _descending order_
-  - By release date: _descending order_
+---
 
-### Features
-#### 1. Minor changes in color scheme
-#### 2. New layout component: react-responsive-carousel
-  Used in similar movies and cast list in `Movie Detail Page`
-#### 3. Responive UI Layout
-  - Made carousel' _centerSlidePercentage_ parameter depend on the screen size. For this I made use of _useMediaQuery and useTheme_ as shown <br>
+## ⚖️ Sorting Functionality
+Implemented in the `FilterCard` component and visible on all main movie listing pages:
+
+- **By Title**: Alphabetically
+- **By Ratings**: Descending (vote_average)
+- **By Release Date**: Descending
+
+---
+
+## 📅 Responsive Carousel & Layout
+
+### New Layout Component
+Used `react-responsive-carousel` for displaying similar movies and cast lists.
+
+### Adaptive Design
+Used Material UI's `useMediaQuery` and `useTheme` to make carousels responsive:
+
+```js
+const theme = useTheme();
+const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+centerSlidePercentage={isMobile ? 50 : 20};
 ```
-  import { useMediaQuery, useTheme } from "@mui/material";`
 
-  // Use the MUI theme and breakpoints to determine screen size
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));  // Define mobile screen size
+- 5 slides on large screens
+- 3 slides on mobile
 
-  centerSlidePercentage={isMobile ? 50: 20}
+<div style="display: flex; gap: 1rem; align-items: flex-start;">
+  <img src="https://github.com/user-attachments/assets/ef971ae2-cba3-4b73-9f6c-68ef94135587" alt="5 Slides - Large Screen" width="60%" />
+  <img src="https://github.com/user-attachments/assets/5b04dfd1-63ad-4d21-8c85-0c21822094c8" alt="3 Slides - Mobile" width="25%" />
+</div>  
 
-```
- **We can see 5 slides at once on larger screen**
- 
- 
- ![image](https://github.com/user-attachments/assets/ef971ae2-cba3-4b73-9f6c-68ef94135587)
- 
+---
 
- **Opposed to 3 slides on Mobile**
+ **Note**: In some cases, using a flex layout produced better UI/UX. This is particularly evident on the `Person Details` page.
 
- ![image](https://github.com/user-attachments/assets/5b04dfd1-63ad-4d21-8c85-0c21822094c8)
+<div style="display: flex; gap: 1rem; align-items: flex-start;">
+  <img src="https://github.com/user-attachments/assets/6e86df2a-0317-46dc-a5a0-222ecb645165" alt="Flex Layout 1" width="60%" />
+  <img src="https://github.com/user-attachments/assets/a32d82ee-b270-47be-9b9a-29749781395a" alt="Flex Layout 2" width="25%" />
+</div>
 
- **NB: I noted in this case that  using a flex box renders much better in terms of UIX. It is adjusts better per screen size and is more visually appealing. Example shown in the Persons details page, movie credits section.**
+---
 
- ![image](https://github.com/user-attachments/assets/6e86df2a-0317-46dc-a5a0-222ecb645165)
+## 🔢 Pagination & Sticky Headers
 
- ![image](https://github.com/user-attachments/assets/a32d82ee-b270-47be-9b9a-29749781395a)
-
-#### 4. Pagination and Sticky Headers
 Site and Page Headers made sticky (unscrollable) to facilitate navigation. <br> <br>
 __Added Pagination to all main pages displaying fetched movie list. For this:__ <br>
 - The concerned fetches were updated to take in a page number parameter.
@@ -88,8 +110,10 @@ __Added Pagination to all main pages displaying fetched movie list. For this:__ 
 
   ![image](https://github.com/user-attachments/assets/046e617f-158e-45a3-997b-5afa269a9cb8)
 
-  #### 5. Handle missing Information to keep good UD
-  Noticed some objects had some empty paramaters and handled some of them using conditionals. For example:
+---
+
+  ## 🔐 User-Friendly Fallbacks
+  Conditional rendering ensures clean UI even when data is missing. For example:
   ```
   <Typography variant="body1" gutterBottom> {/*gutterBottom to add bottom margin*/}
            {person.biography ? person.biography : "Biography is not available at the moment."}
@@ -97,8 +121,36 @@ __Added Pagination to all main pages displaying fetched movie list. For this:__ 
   ```
   ![image](https://github.com/user-attachments/assets/4b8bc10e-3fd1-453d-9b9a-4e7f30aa10ff)
 
+---
 
+## 🎓 Tech Stack
+- React.js
+- React Query
+- React Router
+- Material UI
+- TMDB API
+- react-responsive-carousel
 
+---
+
+## 📊 Skills Demonstrated
+- RESTful API Integration
+- Responsive UI Design
+- Pagination and Query Optimization
+- Conditional Rendering
+- Frontend Architecture & State Management
+
+---
+
+## 📰 Future Improvements
+- Integrate user authentication for review submission
+- Enable favoriting and watchlists with local or backend persistence
+- Add unit tests for fe
+---
+
+Feel free to fork this repo, open an issue, or contact me directly for feedback and collaboration!
+
+---
 
 
 
